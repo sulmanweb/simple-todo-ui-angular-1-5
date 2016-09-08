@@ -9,7 +9,7 @@ myApp.controller('mainCtrl', ['$scope', '$log', 'todoService', function ($scope,
   $scope.load_todos = function () {
     todoService.get_todos().success(function (data) {
       $scope.todos = data;
-      $log.info($scope.todos);
+      $log.info("Get todos");
     }).error(function (errors) {
       $log.error(errors);
     });
