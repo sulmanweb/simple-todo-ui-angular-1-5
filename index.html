@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en" ng-app="todoApp">
+<head>
+  <meta charset="UTF-8">
+  <title>TODO App</title>
+  <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1, user-scalable=no">
+
+  <link href="https://fonts.googleapis.com/css?family=Roboto" rel="stylesheet">
+
+  <!-- Latest compiled and minified CSS -->
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css"
+        integrity="sha384-BVYiiSIFeK1dGmJRAkycuHAHRg32OmUcww7on3RYdg4Va+PmSTsz/K68vbdEjh4u" crossorigin="anonymous">
+
+  <!-- User Styles -->
+  <link rel="stylesheet" href="styles/main.min.css" type="text/css">
+
+  <!-- jQuery for bootstrap -->
+  <script src="https://code.jquery.com/jquery-2.2.4.min.js"
+          integrity="sha256-BbhdlvQf/xTY9gja0Dq3HiwQF8LaCRTXxZKRutelT44=" crossorigin="anonymous"></script>
+
+  <!-- Latest compiled and minified JavaScript -->
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"
+          integrity="sha384-Tc5IQib027qvyjSMfHjOMaLkfuWVxZxUPnCJA7l2mCWNIpG9mGCD8wGNIcPD7Txa"
+          crossorigin="anonymous"></script>
+
+  <!-- Angular Script -->
+  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+
+  <!-- My scripts -->
+  <script src="scripts/app.min.js"></script>
+  <script src="scripts/services/todo_ser.min.js"></script>
+  <script src="scripts/controllers/main_ctrl.min.js"></script>
+
+  <!-- Font Awesome -->
+  <script src="https://use.fontawesome.com/a3739bc515.js"></script>
+</head>
+<body>
+<div class="container">
+  <!-- Only one controller -->
+  <div ng-controller="mainCtrl">
+    <div class="col-md-6 col-md-offset-3">
+      <h1 class="text-center">TODO App</h1>
+      <div class="form-group">
+        <label for="new_todo">ToDo</label>
+        <input type="text" class="form-control" id="new_todo" placeholder="ToDo" ng-model="new_todo"
+               ng-keypress="check_new_todo($event)">
+      </div>
+      <div ng-repeat="todo in todos" class="row">
+        <div class="col-sm-1">
+          <input type="checkbox" ng-model="todo.done" ng-change="updateTodo(todo.id, todo)">
+        </div>
+        <div class="col-sm-9">
+          <p class="done-{{todo.done}}" ng-if="edits.indexOf(todo.id) < 0" ng-click="addToEdits(todo)">{{todo.name}}</p>
+          <input ng-if="edits.indexOf(todo.id) >= 0" type="text" class="form-control" placeholder="ToDo"
+                 ng-keypress="update_todo_name($event, todo)" ng-model="todo.name">
+        </div>
+        <div class="col-sm-2">
+          <i class="fa fa-times" aria-hidden="true" ng-click="delete_todo(todo.id)"></i>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>
+</body>
+</html>
