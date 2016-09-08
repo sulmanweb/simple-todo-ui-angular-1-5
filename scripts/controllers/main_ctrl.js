@@ -26,7 +26,6 @@ myApp.controller('mainCtrl', ['$scope', '$log', 'todoService', function ($scope,
         $log.error(errors);
       });
       $scope.new_todo = "";
-      $log.info($scope.todos);
     }
   };
 
