@@ -17,42 +17,23 @@
   <script src="https://code.jquery.com/jquery-2.2.4.min.js"></script>
 
   <!-- Angular Script -->
-  <script src="https://ajax.googleapis.com/ajax/libs/angularjs/1.5.8/angular.min.js"></script>
+  <script src="https://code.angularjs.org/1.5.8/angular.js"></script>
+  <script src="https://code.angularjs.org/1.5.8/angular-route.min.js"></script>
+  <script src="scripts/modules/angular-cookie.min.js"></script>
+  <script src="scripts/modules/ng-token-auth.min.js"></script>
 
   <!-- My scripts -->
-  <script src="scripts/app.min.js"></script>
+  <script src="scripts/app.js"></script>
+  <script src="scripts/directives/navbar_dir.min.js"></script>
   <script src="scripts/services/todo_ser.min.js"></script>
   <script src="scripts/controllers/main_ctrl.min.js"></script>
+  <script src="scripts/controllers/auth_ctrl.min.js"></script>
 
   <!-- Font Awesome -->
   <script src="https://use.fontawesome.com/a3739bc515.js"></script>
 </head>
 <body ng-app="todoApp">
-<div class="container">
-  <!-- Only one controller -->
-  <div ng-controller="mainCtrl">
-    <div class="col-md-6 col-md-offset-3">
-      <h1 class="text-center">TODO App</h1>
-      <div class="form-group">
-        <label for="new_todo">ToDo</label>
-        <input type="text" class="form-control" id="new_todo" placeholder="ToDo" ng-model="new_todo"
-               ng-keypress="check_new_todo($event)">
-      </div>
-      <div ng-repeat="todo in todos" class="row">
-        <div class="col-sm-1">
-          <input type="checkbox" ng-model="todo.done" ng-change="updateTodo(todo.id, todo)">
-        </div>
-        <div class="col-sm-9">
-          <p class="done-{{todo.done}}" ng-if="edits.indexOf(todo.id) < 0" ng-click="addToEdits(todo)">{{todo.name}}</p>
-          <input ng-if="edits.indexOf(todo.id) >= 0" type="text" class="form-control" placeholder="ToDo"
-                 ng-keypress="update_todo_name($event, todo)" ng-model="todo.name">
-        </div>
-        <div class="col-sm-2">
-          <i class="fa fa-times" aria-hidden="true" ng-click="delete_todo(todo.id)"></i>
-        </div>
-      </div>
-    </div>
-  </div>
-</div>
+  <!-- Only route controllers -->
+  <div ng-view></div>
 </body>
 </html>
